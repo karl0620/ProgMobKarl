@@ -1,7 +1,6 @@
 package com.example.service_api_72190327.Network
 
-import com.example.service_api_72190327.Models.DataItem
-import com.example.service_api_72190327.Models.ResponsePetani
+import com.example.service_api_72190327.Models.ResponseKuliahItem
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -20,7 +19,7 @@ class NetworkConfig {
     }
     fun getRetrofit() : Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.12/slim-tokobuah/public/")
+            .baseUrl("http://192.168.42.204/slim-matakuliah/public/api/progmob/matkul/72190327/")
             .client(getInterceptor())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -28,9 +27,9 @@ class NetworkConfig {
     fun getService() = getRetrofit().create(Users::class.java)
 }
 interface Users {
-    @GET("users")
-    fun getUsers(): Call<List<DataItem>>
+    @GET("api/progmob/matkul/72190327")
+    fun getKuliahAll(): Call<ResponseKuliahItem>
 
-    @GET("petani/")
-    fun getPetaniAll(): Call<ResponsePetani>
+    @GET("api/progmob/matkul/72190327/{kode}")
+    fun getKuliah(): Call<ResponseKuliahItem>
 }

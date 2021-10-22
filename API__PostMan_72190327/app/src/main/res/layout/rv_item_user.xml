@@ -5,32 +5,33 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/kode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="id" />
+        android:text="kode" />
 
     <TextView
         android:id="@+id/nama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="nama" />
+        android:text="namaMatkul" />
 
     <TextView
-        android:id="@+id/alamat"
+        android:id="@+id/hari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="alamat" />
+        android:text="hari" />
 
     <TextView
-        android:id="@+id/nama_istri"
+        android:id="@+id/sesi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="nama_istri" />
+        android:text="sesi" />
 
     <TextView
-        android:id="@+id/jumlah_lahan"
+        android:id="@+id/sks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="jumlah_lahan" />
+        android:text="sks" />
+
 </LinearLayout>
