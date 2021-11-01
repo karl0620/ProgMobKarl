@@ -1,7 +1,9 @@
 package com.example.reference_login.CRUD
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -74,5 +76,37 @@ class GetUserActivity : AppCompatActivity(){
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_get_apiactivity)
+
+        rvUser = findViewById(R.id.rvUser)
+
+        sharedPref = getSharedPreferences(prefs_name, Context.MODE_PRIVATE)
+
+        NetworkConfig().getService()
+            .getUsers()
+            .enqueue(object : Callback<List<ResponseUserItem>> {
+                override fun onFailure(
+                    call: Call<List<ResponseUserItem>>, t:
+                    Throwable
+                ) {
+                    Toast.makeText(
+                        this@GetUserActivity, t.localizedMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onResponse(
+                    call: Call<List<ResponseUserItem>>,
+                    response: Response<List<ResponseUserItem>>
+                ) {
+                    rvUser.apply {
+                        layoutManager = LinearLayoutManager(this@GetUserActivity)
+                        adapter = UserAdapter(response.body())
+                    }
+                }
+            })
+    }
 
 }
